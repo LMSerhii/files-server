@@ -1,5 +1,9 @@
 import express from "express";
-import { createFile } from "../controllers/filesControllers.js";
+import {
+  createFile,
+  getFileInfo,
+  getFiles,
+} from "../controllers/filesControllers.js";
 import { createFilesSchema } from "../schemas/filesSchemas.js";
 import { checkExtension } from "../middlewares/checkExtension.js";
 import validateBody from "../helpers/validateBody.js";
@@ -12,5 +16,9 @@ filesRouter.post(
   checkExtension,
   createFile
 );
+
+filesRouter.get("/", getFiles);
+
+filesRouter.get("/:filename", getFileInfo);
 
 export default filesRouter;
